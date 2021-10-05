@@ -1,0 +1,26 @@
+
+{{> header}}
+{{> navbar}}
+<div class="indexCar" style="text-align:center; margin-top:50px;">
+
+<div class="indexContainer">
+    {{#each car}}
+    
+    <div class="carList">
+    <div id="left">
+        <img id="displayPhoto" src="{{this.photo}}">
+    </div>
+    <div id="right" style="text-align:left">
+    <label>Car Name:{{this.name}}</label><br>
+    <label>Plat Number:{{this.plat_number}}</label><br>
+    <label>Price:{{this.price}}/day</label><br>
+    <label>Status:{{this.status}}</label><br>
+    <a class="btn-rent" href="/rent/{{this.id}}" id="rent">Rent</a>
+    </div>
+</div>
+
+    
+    {{/each}}
+</div>
+</div>
+{{> footer}}

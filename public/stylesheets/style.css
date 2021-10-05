@@ -1,0 +1,215 @@
+body {
+    background-color: rgb(253, 183, 104) !important;
+}
+
+nav {
+    background-color: rgb(172, 74, 9);
+    height: 50px;
+}
+
+nav p {
+    margin-top: 10px;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black !important;
+}
+
+.nav-item .btn-login {
+    color: #393939;
+    text-decoration: none;
+    border: 2px solid #393939;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.nav-item .btn-register {
+    color: #ffffff !important;
+    text-decoration: none;
+    border: 2px solid #393939;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #393939;
+}
+
+.navbar-brand {
+    font-weight: bold !important;
+    font-size: 50px !important;
+    color: #000000 !important;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white !important;
+}
+
+.auth-register {
+    margin-bottom: 20px;
+}
+
+.auth-register input {
+    width: 100%;
+    background: rgba(210, 210, 210, 0.25);
+    border: 2px solid #bcbcbc;
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 50px;
+    padding-left: 10px;
+}
+
+.input-register {
+    width: 460px;
+}
+
+.auth-register .btn-register {
+    background-color: #393939;
+    border-radius: 1px;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 60px;
+}
+
+.img-avatar {
+    width: 50px;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.dropdown-menu {
+    border: none;
+}
+
+.dropdown-item img {
+    width: 20px;
+}
+
+#left img {
+    width: 200px;
+    height: 150px;
+}
+
+.carList {
+    margin-top: 20px;
+    display: flex !important;
+    flex-direction: row !important;
+    margin-left: 50px;
+    width: 500px;
+    height: 200px;
+}
+
+.indexContainer {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+}
+
+.carList #left {
+    margin-right: 20px;
+}
+
+.btn-addCar {
+    background-color: grey;
+    padding: 10px 200px 10px 200px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+.indexCar {
+    margin-top: 80px !important;
+    margin-bottom: 50px !important;
+    text-align: center !important;
+}
+
+#right {
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.btn-rent {
+    background-color: rgb(0, 140, 255);
+    color: white;
+    padding: 5px 30px 5px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.addCar-container label {
+    background-color: gray;
+    padding: 5px 30px 5px 30px;
+    text-align: left !important;
+    margin-left: 460px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    ;
+}
+
+.addCar-container input {
+    margin-left: 200px;
+    margin-top: 10px;
+    width: 600px;
+    height: 50px;
+    background-color: white;
+}
+
+.addCar-container select {
+    margin-left: 460px;
+    margin-top: 20px;
+    width: 600px;
+    height: 50px;
+}
+
+.addCar-container button {
+    text-align: center;
+    margin-left: 670px;
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.rent-container {
+    justify-content: center;
+    border: 3px solid chocolate;
+    width: 500px;
+    height: 300px;
+    margin: 100px 400px 100px 500px;
+}
+
+.rent-container .id {
+    background-color: rgb(253, 183, 104);
+    color: rgb(253, 183, 104);
+    border-style: none;
+    width: 0px;
+    height: 0px;
+}
+
+.rent-container form {
+    margin-top: 30px;
+    margin-left: 100px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.rent-container label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.profile {
+    text-align: center;
+    border: 3px solid chocolate;
+    width: 700px;
+    height: 150px;
+    margin: 100px 400px 100px 400px;
+    background-color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}

@@ -1,0 +1,16 @@
+{{> header}}
+{{> navbar}}
+
+<p class="carRent">
+    {{#each rent}}
+    <div class="profile">
+    <label>Borrow Date:{{this.borrow_date}}</label><br>
+    <label>Return Date:{{this.return_date}}</label><br>
+    <label>Sub Total:{{this.sub_total}}</label><br>
+    <a class="btn-delete" id="delete" href="/deleteRent/{{this.id}}"><img style="width:20px; heigh:20px;" src="./public/stylesheets/icon/trash.png"></a>
+    </div>
+    {{/each}}
+</p>
+
+
+{{> footer}}

@@ -1,0 +1,27 @@
+{{> header}}
+{{> navbar}}
+<div class="indexCar" style="text-align:center; margin-top:50px;">
+<a class="btn-addCar" href="/addCar">Add Car</a>
+<div class="indexContainer">
+    {{#each car}}
+    
+    <div class="carList">
+    <div id="left">
+        <img id="displayPhoto" src="{{this.photo}}">
+    </div>
+    <div id="right" style="text-align:left">
+    <label>Car Name:{{this.name}}</label><br>
+    <label>Plat Number:{{this.plat_number}}</label><br>
+    <label>Price:{{this.price}}/day</label><br>
+    <label>Status:{{this.status}}</label><br>
+    <a class="btn-rent" href="/rent/{{this.id}}" id="rent">Rent</a>
+    <a class="btn-edit" id="edit" href="/editCar/{{this.id}}"><img style="width:20px; heigh:20px;" src="./public/stylesheets/icon/edit.png"></a>
+    <a class="btn-delete" id="delete" href="/deleteCar/{{this.id}}"><img style="width:20px; heigh:20px;" src="./public/stylesheets/icon/trash.png"></a><br>
+    </div>
+</div>
+
+    
+    {{/each}}
+</div>
+</div>
+{{> footer}}
