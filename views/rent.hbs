@@ -7,13 +7,12 @@
 {{> navbar}}
 <div class="rent-container">
     <form method="post" action="/rent">
-    <input class="id" name="id" value="{{this.id}}" ></input><br>
+    <input class="id" name="id" value="{{this.id}}" hidden></input><br>
     <label>Borrow Date</label>
-    <input type="date" name="borrow_date"></input><br>
+    <input style="border-radius:5px;"type="date" name="borrow_date"></input><br>
     <label>Return Date</label>
-    <input style="margin-left:10px;" type="date" name="return_date"></input><br>
-    <label>Sub Total</label>
-    <input style="margin-left:50px; width:125px; height:25px;" type="text" name="sub_total"></input><br>
+    <input style="margin-left:10px; border-radius:5px;" type="date" name="return_date"></input><br>
+   
     <button type="submit" class="btn btn-primary">Rent Now</button>
     </form>
 </div>

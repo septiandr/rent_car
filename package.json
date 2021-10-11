@@ -11,9 +11,11 @@
     "dependencies": {
         "express": "^4.17.1",
         "express-session": "^1.17.2",
+        "flash": "^1.1.0",
         "hbs": "^4.1.2",
         "multer": "^1.4.3",
         "mysql2": "^2.3.0",
-        "nodemon": "^2.0.13"
+        "nodemon": "^2.0.13",
+        "session": "^0.1.0"
     }
 }

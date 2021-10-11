@@ -4,6 +4,7 @@ const express = require('express');
 const hbs = require('hbs');
 const session = require('express-session');
 
+
 const app = express();
 
 const dbConnection = require('./connection/db');
@@ -27,7 +28,10 @@ app.use(
         secret: 'SangatRahasia',
     })
 );
+
 const isLogin = false;
+const user = 0;
+const status = false;
 app.use(function(req, res, next) {
     res.locals.message = req.session.message;
     delete req.session.message;
@@ -57,11 +61,22 @@ app.get('/', function(request, response) {
                 });
 
             }
+            request.session.car = {
+                name: results[0].name,
+                plat_number: results[0].plat_number,
+                price: results[0].price,
+            }
+
+            if (results[0].status == 'Not Ready') {
+                const status = false;
+            }
+            console.log(status);
 
             response.render('index', {
                 title,
                 isLogin: request.session.isLogin,
                 car,
+                status,
             });
         });
     });
@@ -131,8 +146,10 @@ app.get('/rent/:id', function(request, response) {
     const { id } = request.params;
     response.render('rent', {
         title,
-        isLogin: request.session.isLogin,
         id,
+        isLogin: request.session.isLogin,
+        user: request.session.user.id,
+        car: request.session.car,
     });
 
 });
@@ -192,22 +209,25 @@ app.post('/login', function(request, response) {
                     type: 'success',
                     message: 'Login has successfully!',
                 };
-                console.log(results)
+                request.session.user = {
+                    id: results[0].id,
+                    email: results[0].email,
+                    name: results[0].name,
+                    status: results[0].status
+                }
                 request.session.isLogin = true;
+
                 if (results[0].status == 0) {
-                    response.redirect('/indexAdm');
+                    response.redirect('/indexAdm')
                 } else {
-                    request.session.user = {
-                        id: results[0].id,
-                        email: results[0].email,
-                        name: results[0].name,
-                        status: results[0].status,
-                    };
+
                     response.redirect('/');
                 }
 
+
             }
         });
+
     });
 });
 
@@ -245,11 +265,17 @@ app.post('/addCar', uploadFile('photo'), function(request, response) {
 app.post('/rent', function(request, response) {
 
     const { id, borrow_date, return_date, sub_total, } = request.body;
-    console.log(id)
+
     const user_id = request.session.user.id;
+    const time1 = new Date(borrow_date).getTime();
+    const time2 = new Date(return_date).getTime();
+    const diff = time2 - time1;
+    const dayDiff = diff / 86400000;
+    const price = request.session.car.price;
+    const total = dayDiff * price;
+    console.log(price)
 
-
-    const query = `INSERT INTO tb_rent (borrow_date,return_date,sub_total,car_id,user_id) VALUES("${borrow_date}","${return_date}","${sub_total}",${id},${user_id});`;
+    const query = `INSERT INTO tb_rent (borrow_date,return_date,sub_total,car_id,user_id) VALUES("${borrow_date}","${return_date}","${total}",${id},${user_id});`;
     console.log(query);
     dbConnection.getConnection(function(err, conn) {
         if (err) throw err;
@@ -288,11 +314,11 @@ app.get('/editCar/:id', function(request, response) {
 
 app.post('/editCar', uploadFile('photo'), function(request, response) {
     var { id, name, plat_number, price, photo, status, type, brand, oldImage } = request.body;
-    console.log(id)
+    console.log(oldImage);
     var photo = oldImage.replace(pathFile, '');
 
     if (request.file) {
-        image = request.file.filename;
+        photo = request.file.filename;
     }
 
     const query = `UPDATE tb_car SET photo = "${photo}", name = "${name}", plat_number = "${plat_number}", price = "${price}", status = "${status}", brand_id = ${brand}, type_id = ${type} WHERE id = ${id}`;
@@ -322,8 +348,7 @@ app.get('/deleteCar/:id', function(request, response) {
 
 app.get('/profile', function(request, response) {
     const title = 'Car';
-
-    const query = 'SELECT * FROM tb_rent ORDER BY id DESC';
+    const query = 'SELECT tb_rent.id, tb_rent.borrow_date, tb_rent.return_date,tb_rent.sub_total,tb_car.name,tb_car.plat_number,tb_car.price,tb_car.photo FROM tb_rent INNER JOIN tb_car ON tb_rent.car_id = tb_car.id; ';
 
     dbConnection.getConnection(function(err, conn) {
         if (err) throw err;
@@ -338,15 +363,27 @@ app.get('/profile', function(request, response) {
                     borrow_date: result.borrow_date,
                     return_date: result.return_date,
                     sub_total: result.sub_total,
-                    car_id: result.car_id,
+                    name: result.name,
+                    plat_number: result.plat_number,
+                    price: result.price,
+                    photo: result.photo,
+
                 });
 
+                var isContentOwner = false;
+
+                if (request.session.isLogin) {
+                    if (request.session.user.id == results[0].user_id) {
+                        isContentOwner = true;
+                    }
+                }
             }
 
             response.render('profile', {
                 title,
                 isLogin: request.session.isLogin,
                 rent,
+                isContentOwner,
             });
         });
     });
@@ -369,7 +406,6 @@ app.get('/logout', function(request, response) {
     request.session.destroy();
     response.redirect('/');
 });
-
 
 const port = 3000;
 const server = http.createServer(app);

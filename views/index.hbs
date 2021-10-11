@@ -8,14 +8,18 @@
     
     <div class="carList">
     <div id="left">
-        <img id="displayPhoto" src="{{this.photo}}">
+        <img id="displayPhoto" style="box-shadow: 2px 2px 3px black;" src="{{this.photo}}">
     </div>
     <div id="right" style="text-align:left">
     <label>Car Name:{{this.name}}</label><br>
     <label>Plat Number:{{this.plat_number}}</label><br>
     <label>Price:{{this.price}}/day</label><br>
     <label>Status:{{this.status}}</label><br>
+    {{#if status}}
     <a class="btn-rent" href="/rent/{{this.id}}" id="rent">Rent</a>
+    {{else}}
+    <p  class="btn-rent" >Rented</p>
+    {{/if}}
     </div>
 </div>
 

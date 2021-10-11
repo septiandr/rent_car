@@ -3,10 +3,19 @@
 
 <p class="carRent">
     {{#each rent}}
+    
     <div class="profile">
-    <label>Borrow Date:{{this.borrow_date}}</label><br>
-    <label>Return Date:{{this.return_date}}</label><br>
+    <img class="img" style="width:250px; height:200px;box-shadow: 2px 2px 3px black;" src="/uploads/{{this.photo}}">
+    <div class="value">
+        <input class="id" name="id" value="{{this.id}}" hidden ></input><br>
+    <label >Name: {{this.name}}"</label><br>
+    <label >Plat Number: {{this.plat_number}}"</label><br>
+    <label >Price: {{this.price}}</label><br>
+    <input disabled value="Borrow Date: {{this.borrow_date}}"></input><br>
+    <input disabled value="Return Date: {{this.return_date}}"></input><br>
     <label>Sub Total:{{this.sub_total}}</label><br>
+    </div>
+    
     <a class="btn-delete" id="delete" href="/deleteRent/{{this.id}}"><img style="width:20px; heigh:20px;" src="./public/stylesheets/icon/trash.png"></a>
     </div>
     {{/each}}

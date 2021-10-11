@@ -9,34 +9,34 @@
 <form method="post" action="/editCar" enctype="multipart/form-data">
 <div class="AddCar-container pt-5">
     <input type="hidden" name="id" value="{{car.id}}"/>
-    <input style="margin-left:460px; margin-bottom:20px;" type="hidden" name="oldImage" value="{{this.photo}}"/>
+    <input style="margin-left:460px; margin-bottom:20px;" type="hidden" name="oldImage"  value="{{car.photo}}">
     <div style="margin-left:460px; margin-bottom:20px;" id="preview-thumbnail"></div>
     <label  for="file">photo <img style="width:30px; height:30px;" src="/public/stylesheets/icon/paperclip.png" alt=""></label>
     <input name="photo" type="file" id="file" onchange="handleChange()" hidden>
         <div class="row auth-register">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <input type="text" placeholder="Name" name="name" value="{{this.name}}">
+                <input type="text" placeholder="Name" name="name" value="{{car.name}}">
             </div>
             <div class="col-md-2"></div>
         </div>
         <div class="row auth-register">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <input type="text" placeholder="Plat Number" name="plat_number" value="{{this.plat_number}}">
+                <input type="text" placeholder="Plat Number" name="plat_number" value="{{car.plat_number}}">
             </div>
             <div class="col-md-2"></div>
         </div>
         <div class="row auth-register">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <input type="text" placeholder="price/day" name="price" value="{{this.price}}">
+                <input type="text" placeholder="price/day" name="price" value="{{car.price}}">
             </div>
             <div class="col-md-2"></div>
         </div>
         <div class="type">
-        <select name="type" class="form-select" aria-label="Default select example">
-        <option selected disabled>Select Car Type</option>
+        <select name="type" class="form-select" aria-label="Default select example" >
+        <option selected disabled>{{car.type}}</option>
         <option value=1>City Car</option>
         <option value=2>Coupe/Sedan</option>
         <option value=3>MPV</option>
@@ -45,7 +45,7 @@
         </div>
         <div class="brand">
         <select name="brand" class="form-select" aria-label="Default select example">
-        <option selected disabled>Select Car Brand</option>
+        <option selected disabled>{{car.brand}}</option>
         <option value=1>Toyota</option>
         <option value=3>Honda</option>
         <option value=4>Mitsubishi</option>
@@ -57,8 +57,8 @@
         </select>
         </div>
     <div class="status">
-        <select name="status" class="form-select" aria-label="Default select example">
-        <option selected disabled>Status</option>
+        <select name="status" class="form-select" aria-label="Default select example" >
+        <option selected disabled>{{car.status}}</option>
         <option value="Ready">Ready</option>
         <option value="Not Ready">Not Ready</option>
     </select>
